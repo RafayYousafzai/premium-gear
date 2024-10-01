@@ -1,0 +1,140 @@
+.checkout-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.checkout-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    flex: 1;
+    background-color: #f9f9f9;
+    margin: 0 400px; /* Maintain spacing around the two sections */
+}
+
+.auth-section {
+    flex: 0 0 70%; /* Set the auth section to take 70% of the width */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-right: 20px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.auth-header h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: #db8728;
+    margin: 10px auto 0;
+}
+
+.auth-header p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.auth-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold; /* Make the label text bold */
+    color: #333;
+}
+
+.auth-section input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.auth-section button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #eeb244;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.auth-section button:hover {
+    background-color: #db8728;
+}
+
+.vehicle-summary {
+    flex: 0 0 30%; /* Set the vehicle summary section to take 30% of the width */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+}
+
+.vehicle-summary h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.vehicle-summary p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.vehicle-summary img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.total-price,
+.reservation-price {
+    text-align: left;
+    margin-bottom: 20px; /* Add space between price and the button */
+}
+
+.confirm-button {
+    width: 100%; /* Make the button full width */
+    padding: 10px 15px;
+    background-color: #eeb244;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin-top: 20px;
+}
+
+.confirm-button:hover {
+    background-color: #db8728;
+}

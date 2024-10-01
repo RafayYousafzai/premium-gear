@@ -1,0 +1,108 @@
+/* src/components/styles/AuthStyles.css */
+
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .auth-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333; /* Dark Gray */
+    font-weight: bold;
+  }
+  
+  .auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .auth-container form div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .auth-container form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333333; /* Dark Gray */
+  }
+  
+  .auth-container form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .auth-container form button {
+    width: 100%;
+    background-color: #db8728; /* Orange for Buttons */
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .auth-container form button:hover {
+    background-color: #eeb244; /* Golden for Hovered Buttons */
+  }
+  
+  .auth-container .social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .auth-container .social-login button {
+    background-color: #333333; /* Dark Gray for Social Buttons */
+    color: white;
+  }
+  
+  .auth-container .social-login button.google {
+    background-color: #db4437; /* Google Red */
+  }
+  
+  .auth-container .social-login button.facebook {
+    background-color: #3b5998; /* Facebook Blue */
+  }
+  
+  .auth-container .social-login button:hover {
+    background-color: #87572b; /* Darker Hover for Social Buttons */
+  }
+  
+  .auth-container .or-divider {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .auth-container .or-divider::before,
+  .auth-container .or-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .auth-container .or-divider:not(:empty)::before {
+    margin-right: .25em;
+  }
+  
+  .auth-container .or-divider:not(:empty)::after {
+    margin-left: .25em;
+  }
+  

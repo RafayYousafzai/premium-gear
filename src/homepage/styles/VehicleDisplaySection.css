@@ -1,0 +1,173 @@
+.vehicle-display-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 0 40px; /* Space on both sides */
+    position: relative; /* For positioning the navigation arrows */
+}
+
+.vehicle-cards-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.vehicle-cards {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    gap: 16px;
+    transition: transform 0.5s ease-in-out; /* Smoother scrolling */
+}
+
+.vehicle-card {
+    flex: 0 0 19%; /* Adjust to keep consistent card sizes */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.vehicle-card:hover {
+    transform: translateY(-5px); /* Slightly lift the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase shadow for a lifted effect */
+}
+
+.vehicle-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.vehicle-info {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.vehicle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vehicle-name {
+    font-weight: bold;
+    font-size: 20px;
+    color: #333333;
+}
+
+.vehicle-price {
+    font-weight: bold;
+    font-size: 18px;
+    color: #db8728;
+    text-align: right;
+}
+
+.vehicle-reservation-small {
+    font-weight: bold;
+    font-size: 16px;
+    color: #87572b;
+    text-align: right;
+}
+
+.vehicle-specs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.left-section {
+    flex: 2;
+}
+
+.right-section {
+    flex: 1;
+    text-align: right;
+}
+
+.vehicle-details {
+    font-size: 14px;
+    margin: 3px 0;
+    color: #555;
+}
+
+.vehicle-status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.vehicle-status.available {
+    background-color: green;
+}
+
+.vehicle-status.reserved {
+    background-color: orange;
+}
+
+.vehicle-status.sold {
+    background-color: red;
+}
+
+.vehicle-status.comingsoon {
+    background-color: #000;
+}
+
+.view-vehicle-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #eeb244;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.view-vehicle-button:hover {
+    background-color: #db8728;
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+    position: absolute;
+    top: -30px; /* Positioning the arrows above the vehicle cards */
+    font-size: 24px;
+    color: #eeb244;
+    background-color: #fff;
+    border: 1px solid #eeb244;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+    transition: none;
+}
+
+.nav-arrow:hover {
+    transform: none; /* No hover effect */
+}
+
+.prev-arrow {
+    left: 10px; /* Adjusted positioning */
+}
+
+.next-arrow {
+    right: 10px; /* Adjusted positioning */
+}

@@ -1,0 +1,29 @@
+.two-column-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 20px;
+    background-color: #f7f7f7; /* Keeping a light background for contrast */
+    text-align: center;
+}
+
+.column {
+    max-width: 300px;
+    padding: 20px;
+}
+
+.icon {
+    font-size: 50px;
+    color: #db8728; /* Using the primary orange color from your palette */
+    margin-bottom: 20px;
+}
+
+.column h3 {
+    color: #333333; /* Dark grey color from your palette for headings */
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.column p {
+    color: #555; /* Neutral text color */
+    font-size: 16px;
+}

@@ -1,0 +1,37 @@
+.car-details-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.car-details-table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures borders don't overlap */
+    text-align: left;
+}
+
+.car-details-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0; /* Add vertical lines */
+    font-size: 16px;
+    color: #333;
+}
+
+.car-details-table td:last-child {
+    border-right: none; /* Remove border from the last column */
+}
+
+.car-details-table tr td {
+    border-bottom: 1px solid #e0e0e0; /* Ensure the line covers all cells */
+}
+
+.car-details-table tr:last-child td {
+    border-bottom: none; /* Remove the border from the last row */
+}
+
+.car-details-table td:first-child {
+    font-weight: bold;
+}

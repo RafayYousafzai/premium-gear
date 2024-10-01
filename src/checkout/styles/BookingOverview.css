@@ -1,0 +1,64 @@
+.booking-overview-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.booking-overview-section h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.booking-overview-section h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: #db8728;
+    margin: 5px 0;
+}
+
+.booking-overview-section .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.booking-overview-section .info-item {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 2px;
+    display: flex;
+    line-height: 1.2; /* Reduce line height */
+}
+
+.booking-overview-section .info-item span {
+    font-weight: bold;
+    color: #333;
+    margin-left: 5px; /* Slight margin to separate label from data */
+}
+
+.booking-overview-section .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px; /* Reduce space between rows */
+}
+
+.booking-overview-section .form-group {
+    width: 48%; /* Adjust the width of each field */
+}
+
+.booking-overview-section .form-group.full-width {
+    width: 100%; /* Full width for single fields */
+    margin-bottom: 2px; /* Reduce space below single fields */
+}
+
+.booking-overview-section .form-group.full-width .info-item {
+    padding-bottom: 0; /* Remove padding-bottom from full-width fields */
+}

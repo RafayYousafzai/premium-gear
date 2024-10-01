@@ -1,0 +1,61 @@
+.booking-details-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.booking-details-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px; /* Adds space between rows */
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Adds space between fields */
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.booking-details-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #eeb244;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #db8728;
+}

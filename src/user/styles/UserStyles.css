@@ -1,0 +1,31 @@
+/* src/user/styles/UserStyles.css */
+
+.user-dashboard {
+    padding: 20px;
+    background-color: #fff;
+    min-height: 100vh;
+  }
+  
+  .user-header {
+    background-color: #333333; /* Dark Gray for Header */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .user-header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .user-header button {
+    float: right;
+    margin-top: -40px;
+  }
+  
+  .user-content {
+    padding: 20px;
+    background-color: #f4f4f4; /* Neutral Background */
+    border-radius: 5px;
+  }
+  

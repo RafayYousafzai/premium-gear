@@ -1,0 +1,57 @@
+/* src/admin/styles/AdminStyles.css */
+
+.admin-dashboard {
+    display: flex;
+    background-color: #f4f4f4; /* Neutral Background */
+    height: 100vh;
+  }
+  
+  .admin-header {
+    background-color: #333333; /* Dark Gray for Header */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .admin-header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .admin-header button {
+    float: right;
+    margin-top: -40px;
+  }
+  
+  .admin-sidebar {
+    background-color: #87572b; /* Brown for Sidebar */
+    color: #fff;
+    padding: 15px;
+    width: 200px;
+    height: 100vh;
+  }
+  
+  .admin-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .admin-sidebar ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #db8728; /* Orange for Sidebar Items */
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .admin-sidebar ul li:hover {
+    background-color: #eeb244; /* Golden for Hovered Sidebar Items */
+  }
+  
+  .admin-content {
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #f4f4f4; /* Neutral Background */
+  }
+  

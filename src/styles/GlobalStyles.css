@@ -1,0 +1,38 @@
+/* src/styles/GlobalStyles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Neutral Background */
+    color: #333333; /* Dark Gray for Text */
+  }
+  
+  h1, h2, h3 {
+    color: #333333; /* Dark Gray for Headings */
+  }
+  
+  a {
+    color: #db8728; /* Orange for Links */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    color: #eeb244; /* Golden for Hovered Links */
+  }
+  
+  button {
+    background-color: #db8728; /* Orange for Buttons */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #eeb244; /* Golden for Hovered Buttons */
+  }
+  

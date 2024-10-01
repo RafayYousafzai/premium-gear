@@ -1,0 +1,68 @@
+.homepage {
+  font-family: Arial, sans-serif;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.hero-section {
+  background-color: #f0f0f0;
+  padding: 50px;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 18px;
+  color: #555;
+}
+
+.featured-vehicles, .custom-cars, .warranty-overview, .shop-preview {
+  margin: 40px 0;
+}
+
+.featured-vehicles .vehicle-gallery {
+  display: flex;
+  gap: 20px;
+}
+
+.vehicle-item {
+  position: relative;
+}
+
+.vehicle-item img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.vehicle-item .label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.vehicle-item .available {
+  background-color: green;
+}
+
+.vehicle-item .reserved {
+  background-color: orange;
+}
+
+.vehicle-item .sold {
+  background-color: red;
+}
+
+.vehicle-item .coming-soon {
+  background-color: blue;
+}

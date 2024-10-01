@@ -1,0 +1,73 @@
+.contact-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contact-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contact-form .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.contact-form .form-group input,
+.contact-form .form-group textarea {
+    width: calc(100% - 24px); /* Adjust to fit inside the container */
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1.2rem;
+    background-color: #f9f9f9;
+    color: #333;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+.contact-form .form-group textarea {
+    resize: none;
+    height: 150px;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 15px;
+    background-color: #eeb244; /* Same color as the Encargar Coches button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #db8728; /* Same hover color as the Encargar Coches button */
+}

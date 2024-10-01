@@ -1,0 +1,33 @@
+.pg-preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Fullscreen height */
+  background-color: #f5f5f5; /* Optional: background color */
+}
+
+.pg-spinner {
+  width: 150px;  /* Increased spinner size */
+  height: 150px; /* Increased spinner size */
+  border: 10px solid rgba(0, 0, 0, 0.1); /* Increased border size */
+  border-radius: 50%;
+  border-top-color: #DB8728; /* Spinner color */
+  animation: pg-spin 1s ease-in-out infinite;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pg-logo {
+  width: 80px; /* Increased logo size */
+  height: auto;
+  position: absolute;
+  z-index: 1;
+}
+
+@keyframes pg-spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
