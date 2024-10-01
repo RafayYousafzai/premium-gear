@@ -1,0 +1,96 @@
+.profile-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f7f9fc;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.profile-details {
+  padding: 30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-details h4 {
+  margin-bottom: 30px;
+  color: #2c3e50;
+  font-weight: 600;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.MuiTextField-root {
+  margin-bottom: 20px !important;
+}
+
+.MuiInputLabel-root {
+  color: #34495e !important;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: 8px;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #bdc3c7 !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #3498db !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #2980b9 !important;
+}
+
+.MuiButton-contained {
+  background-color: #3498db !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 10px 20px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.MuiButton-contained:hover {
+  background-color: #2980b9 !important;
+}
+
+.MuiButton-outlined {
+  color: #3498db !important;
+  border-color: #3498db !important;
+  font-weight: 600 !important;
+  padding: 9px 19px !important;
+}
+
+.MuiButton-outlined:hover {
+  background-color: rgba(52, 152, 219, 0.08) !important;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+  .profile-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .profile-details {
+    padding: 20px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .MuiButton-root {
+    width: 100%;
+  }
+}

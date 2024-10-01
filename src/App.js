@@ -1,21 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { auth } from './firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from './firebase';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import AdminDashboard from './admin/AdminDashboard';
-import UserDashboard from './user/UserDashboard';
-import HomePage from './homepage/HomePage';
-import Preloader from './components/Preloader';
-import VehicleDetailPage from './vehicle/VehicleDetailPage';
-import CheckoutPage from './checkout/CheckoutPage'; 
-import ReservationSuccess from './checkout/ReservationSuccess';
-import CustomCars from './CustomCars/CustomCars';
-import AllVehicles from './AllVehicles/AllVehicles';
-import AboutUs from './about/AboutUs';
-import Contact from './contact/Contact'; // Import the Contact component
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { auth } from "./firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./firebase";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import AdminDashboard from "./admin/AdminDashboard";
+import UserDashboard from "./user/UserDashboard";
+import HomePage from "./homepage/HomePage";
+import Preloader from "./components/Preloader";
+import VehicleDetailPage from "./vehicle/VehicleDetailPage";
+import CheckoutPage from "./checkout/CheckoutPage";
+import ReservationSuccess from "./checkout/ReservationSuccess";
+import CustomCars from "./CustomCars/CustomCars";
+import AllVehicles from "./AllVehicles/AllVehicles";
+import AboutUs from "./about/AboutUs";
+import Contact from "./contact/Contact"; // Import the Contact component
+import UserProfile from "./user/UserProfile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,7 +41,7 @@ function App() {
           if (docSnap.exists()) {
             const role = docSnap.data().role;
             setRole(role);
-            setAuthError(null);  // Clear any previous errors
+            setAuthError(null); // Clear any previous errors
           } else {
             console.error("No such document!");
             setAuthError("No such document!");
@@ -76,16 +82,36 @@ function App() {
         <Routes>
           <Route path="/login" element={<Navigate to={`/${role}`} />} />
           <Route path="/signup" element={<Navigate to={`/${role}`} />} />
-          <Route path="/admin/*" element={role === "admin" ? <AdminDashboard /> : <Navigate to="/user" />} />
-          <Route path="/user/*" element={role === "user" ? <UserDashboard /> : <Navigate to="/admin" />} />
+          <Route
+            path="/admin/*"
+            element={
+              role === "admin" ? <AdminDashboard /> : <Navigate to="/user" />
+            }
+          />
+          <Route
+            path="/user/*"
+            element={
+              role === "user" ? <UserDashboard /> : <Navigate to="/admin" />
+            }
+          />
+          <Route path="/profile/*" element={<UserProfile />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
-          <Route path="/checkout/:id" element={<CheckoutPage />} /> {/* Route for checkout */}
-          <Route path="/reservation-success" element={<ReservationSuccess />} /> {/* Route for reservation success */}
-          <Route path="/custom-cars" element={<CustomCars />} /> {/* Route for CustomCars */}
-          <Route path="/cars-in-stock" element={<AllVehicles />} /> {/* Route for AllVehicles */}
-          <Route path="/about-us" element={<AboutUs />} /> {/* Route for AboutUs */}
-          <Route path="/contact" element={<Contact />} /> {/* Route for Contact */}
+          <Route path="/checkout/:id" element={<CheckoutPage />} />{" "}
+          {/* Route for checkout */}
+          <Route
+            path="/reservation-success"
+            element={<ReservationSuccess />}
+          />{" "}
+          {/* Route for reservation success */}
+          <Route path="/custom-cars" element={<CustomCars />} />{" "}
+          {/* Route for CustomCars */}
+          <Route path="/cars-in-stock" element={<AllVehicles />} />{" "}
+          {/* Route for AllVehicles */}
+          <Route path="/about-us" element={<AboutUs />} />{" "}
+          {/* Route for AboutUs */}
+          <Route path="/contact" element={<Contact />} />{" "}
+          {/* Route for Contact */}
           <Route path="*" element={<Navigate to={`/${role}`} />} />
         </Routes>
       </Router>
@@ -99,12 +125,21 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
-        <Route path="/checkout/:id" element={<CheckoutPage />} /> {/* Route for checkout */}
-        <Route path="/reservation-success" element={<ReservationSuccess />} /> {/* Route for reservation success */}
-        <Route path="/custom-cars" element={<CustomCars />} /> {/* Route for CustomCars */}
-        <Route path="/cars-in-stock" element={<AllVehicles />} /> {/* Route for AllVehicles */}
-        <Route path="/about-us" element={<AboutUs />} /> {/* Route for AboutUs */}
-        <Route path="/contact" element={<Contact />} /> {/* Route for Contact */}
+        <Route path="/checkout/:id" element={<CheckoutPage />} />{" "}
+        {/* Route for checkout */}
+        <Route
+          path="/reservation-success"
+          element={<ReservationSuccess />}
+        />{" "}
+        {/* Route for reservation success */}
+        <Route path="/custom-cars" element={<CustomCars />} />{" "}
+        {/* Route for CustomCars */}
+        <Route path="/cars-in-stock" element={<AllVehicles />} />{" "}
+        {/* Route for AllVehicles */}
+        <Route path="/about-us" element={<AboutUs />} />{" "}
+        {/* Route for AboutUs */}
+        <Route path="/contact" element={<Contact />} />{" "}
+        {/* Route for Contact */}
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
