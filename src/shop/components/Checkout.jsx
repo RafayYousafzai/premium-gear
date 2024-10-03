@@ -27,14 +27,32 @@ const stripePromise = loadStripe(
   "pk_test_51OCUhgDkrX1S31jquC991u7GCVxn9QhASplr05nYt5AXcIBrr1WgvowkbrLSUyWALHPCBm5LYN444HC6EB62CAXE00jacnUoX3"
 );
 
+// Styled components with MUI's 'styled' function
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  marginTop: theme.spacing(3),
-  marginBottom: theme.spacing(3),
+  padding: theme.spacing(4),
+  marginTop: theme.spacing(4),
+  marginBottom: theme.spacing(4),
+  backgroundColor: theme.palette.background.default,
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: theme.shadows[3],
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  marginTop: theme.spacing(3),
+  marginTop: theme.spacing(4),
+  padding: theme.spacing(1.5),
+  backgroundColor: theme.palette.primary.main,
+  "&:hover": {
+    backgroundColor: theme.palette.primary.dark,
+  },
+  fontSize: "1rem",
+  fontWeight: 500,
+}));
+
+const StyledCardElement = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderRadius: theme.shape.borderRadius,
+  border: `1px solid ${theme.palette.divider}`,
+  marginBottom: theme.spacing(3),
 }));
 
 const CheckoutForm = ({ total }) => {
@@ -47,9 +65,7 @@ const CheckoutForm = ({ total }) => {
     event.preventDefault();
     setProcessing(true);
 
-    if (!stripe || !elements) {
-      return;
-    }
+    if (!stripe || !elements) return;
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -60,34 +76,33 @@ const CheckoutForm = ({ total }) => {
       setError(error.message);
       setProcessing(false);
     } else {
-      console.log("PaymentMethod", paymentMethod);
-      // Here you would typically send the paymentMethod.id to your server
-      // to complete the payment. For this example, we'll just log it.
-      alert("Payment successful!");
+      console.log("Payment successful", paymentMethod);
       setProcessing(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+      <StyledCardElement>
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
+          }}
+        />
+      </StyledCardElement>
       {error && (
-        <Typography color="error" style={{ marginTop: "1rem" }}>
+        <Typography color="error" style={{ marginBottom: "1rem" }}>
           {error}
         </Typography>
       )}
@@ -114,7 +129,7 @@ export default function Checkout() {
       <Header />
       <Container maxWidth="md">
         <StyledPaper elevation={3}>
-          <Typography variant="h4" gutterBottom align="center">
+          <Typography variant="h4" align="center" gutterBottom>
             Checkout
           </Typography>
           <Typography variant="h6" gutterBottom>
@@ -128,7 +143,7 @@ export default function Checkout() {
                     primary={item.name}
                     secondary={`Quantity: ${item.quantity}`}
                   />
-                  <Typography>
+                  <Typography variant="body1">
                     ${(item.price * item.quantity).toFixed(2)}
                   </Typography>
                 </ListItem>

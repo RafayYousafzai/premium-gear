@@ -26,7 +26,7 @@ export default function Cart() {
   return (
     <>
       <Header />
-      <Container maxWidth="md" style={{ marginTop: "2rem" }}>
+      <Container maxWidth="md" style={{ marginTop: "2rem", minHeight: "70vh" }}>
         <Typography variant="h4" gutterBottom>
           Your Cart
         </Typography>
