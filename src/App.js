@@ -22,6 +22,9 @@ import AllVehicles from "./AllVehicles/AllVehicles";
 import AboutUs from "./about/AboutUs";
 import Contact from "./contact/Contact"; // Import the Contact component
 import UserProfile from "./user/UserProfile";
+import ProductList from "./shop/components/ProductList";
+import Cart from "./shop/components/Cart";
+import Checkout from "./shop/components/Checkout";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -82,6 +85,9 @@ function App() {
         <Routes>
           <Route path="/login" element={<Navigate to={`/${role}`} />} />
           <Route path="/signup" element={<Navigate to={`/${role}`} />} />
+          <Route path="/shop" element={<ProductList />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route
             path="/admin/*"
             element={
