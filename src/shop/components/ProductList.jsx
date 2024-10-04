@@ -14,6 +14,7 @@ import Footer from "../../components/Footer";
 import { ShopContext } from "../../context/ShopContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Link } from "react-router-dom";
 export default function ProductList() {
   const { addToCart } = useContext(ShopContext);
 
@@ -60,9 +61,11 @@ export default function ProductList() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" onClick={() => addToCart(product)}>
-                    Add to Cart
-                  </Button>
+                  <Link style={{ width: "100%" }} to={`/shop/${product.id}`}>
+                    <Button size="small" onClick={() => addToCart(product)}>
+                      Add to Cart
+                    </Button>
+                  </Link>
                 </CardActions>
               </Card>
             </Grid>

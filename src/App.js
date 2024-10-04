@@ -86,6 +86,7 @@ function App() {
           <Route path="/login" element={<Navigate to={`/${role}`} />} />
           <Route path="/signup" element={<Navigate to={`/${role}`} />} />
           <Route path="/shop" element={<ProductList />} />
+          <Route path="/shop/:id" element={<VehicleDetailPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route
