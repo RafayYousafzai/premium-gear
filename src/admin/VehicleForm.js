@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   TextField,
   Dialog,
@@ -6,10 +6,7 @@ import {
   DialogContent,
   DialogTitle,
   MenuItem,
-  Select,
   Button,
-  FormControl,
-  InputLabel,
 } from '@mui/material';
 import { db, storage } from '../firebase';
 import { doc, addDoc, updateDoc, collection } from 'firebase/firestore';
