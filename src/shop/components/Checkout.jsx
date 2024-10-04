@@ -21,6 +21,9 @@ import {
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ShopContext } from "../../context/ShopContext";
+import { useNavigate } from "react-router-dom";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 // Replace with your actual Stripe publishable key
 const stripePromise = loadStripe(
@@ -60,13 +63,15 @@ const CheckoutForm = ({ total }) => {
   const elements = useElements();
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
-
+  const navigate = useNavigate();
+  const { cart, clearCart } = useContext(ShopContext);
   const handleSubmit = async (event) => {
     event.preventDefault();
     setProcessing(true);
 
     if (!stripe || !elements) return;
 
+    // Create payment method using Stripe
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -75,8 +80,24 @@ const CheckoutForm = ({ total }) => {
     if (error) {
       setError(error.message);
       setProcessing(false);
-    } else {
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "carPartsOrders"), {
+        items: cart,
+        status: "purchased",
+        paymentMethodId: paymentMethod.id,
+        total,
+      });
+
       console.log("Payment successful", paymentMethod);
+      clearCart();
+      setProcessing(false);
+
+      navigate(`/`);
+    } catch (err) {
+      setError("Error updating purchase status: " + err.message);
       setProcessing(false);
     }
   };

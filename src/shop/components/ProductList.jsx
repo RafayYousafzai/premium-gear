@@ -33,8 +33,6 @@ export default function ProductList() {
     fetchCarParts();
   }, []);
 
-  console.log(products.map((product) => product.image));
-
   return (
     <>
       <Header />

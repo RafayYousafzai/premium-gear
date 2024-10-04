@@ -4,6 +4,7 @@ import {
   FaCalculator,
   FaTruck,
   FaShieldAlt,
+  FaTruckLoading,
 } from "react-icons/fa";
 import "../../vehicle/styles/VehicleDetailPage.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -61,7 +62,7 @@ const ShopDetailPage = () => {
     navigate(`/checkout`);
   };
 
-  if (!vehicle) return <div>Loading...</div>;
+  if (!vehicle) return null;
 
   return (
     <div className="vehicle-detail-page">
