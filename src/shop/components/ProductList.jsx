@@ -39,21 +39,27 @@ export default function ProductList() {
     <>
       <Header />
 
-      <Container maxWidth="lg" style={{ marginTop: "2rem", minHeight: "70vh" }}>
+      <Container
+        maxWidth="lg"
+        style={{ marginTop: "2rem", minHeight: "100vh" }}
+      >
         <Grid container spacing={4}>
           {products.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
-                  sx={{ height: 140, objectFit: "cover" }}
-                  image={product.image || "https://via.placeholder.com/140"}
+                  sx={{ height: 300, objectFit: "cover" }}
+                  image={product.images[0] || "https://via.placeholder.com/140"}
                   title={product.name}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {product.name}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "text.secondary", height: "5rem" }}
+                  >
                     {product.description}
                   </Typography>
                   <Typography variant="body2" sx={{ color: "text.secondary" }}>
@@ -61,9 +67,12 @@ export default function ProductList() {
                   </Typography>
                 </CardContent>
                 <CardActions>
+                  <Button size="small" onClick={() => addToCart(product)}>
+                    Add to Cart
+                  </Button>
                   <Link style={{ width: "100%" }} to={`/shop/${product.id}`}>
                     <Button size="small" onClick={() => addToCart(product)}>
-                      Add to Cart
+                      View
                     </Button>
                   </Link>
                 </CardActions>

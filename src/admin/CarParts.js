@@ -34,7 +34,7 @@ const CarPartsPage = () => {
   const [partName, setPartName] = useState("");
   const [partPrice, setPartPrice] = useState("");
   const [partDescription, setPartDescription] = useState("");
-  const [partImage, setPartImage] = useState(null);
+  const [partImages, setPartImages] = useState([]); // Handle multiple images
   const [editId, setEditId] = useState(null);
   const [carParts, setCarParts] = useState([]);
 
@@ -60,22 +60,27 @@ const CarPartsPage = () => {
     setPartName("");
     setPartPrice("");
     setPartDescription("");
-    setPartImage(null);
+    setPartImages([]);
     setEditId(null);
   };
 
-  const handleImageUpload = async (file) => {
-    const storageRef = ref(storage, `carParts/${file.name}`);
-    await uploadBytes(storageRef, file);
-    const downloadURL = await getDownloadURL(storageRef);
-    return downloadURL;
+  const handleImageUpload = async (files) => {
+    const imageUrls = [];
+    for (const file of files) {
+      const storageRef = ref(storage, `carParts/${file.name}`);
+      await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(storageRef);
+      imageUrls.push(downloadURL);
+    }
+    return imageUrls;
   };
 
   const handleSubmit = async () => {
-    if (!partName || !partPrice || !partDescription || !partImage) return;
+    if (!partName || !partPrice || !partDescription || !partImages.length)
+      return;
 
     try {
-      const imageUrl = await handleImageUpload(partImage);
+      const imageUrls = await handleImageUpload(partImages);
 
       if (editId) {
         const partDoc = doc(db, "carParts", editId);
@@ -83,14 +88,14 @@ const CarPartsPage = () => {
           name: partName,
           price: parseFloat(partPrice),
           description: partDescription,
-          image: imageUrl,
+          images: imageUrls, // Store as an array of image URLs
         });
       } else {
         await addDoc(collection(db, "carParts"), {
           name: partName,
           price: parseFloat(partPrice),
           description: partDescription,
-          image: imageUrl,
+          images: imageUrls, // Store as an array of image URLs
         });
       }
 
@@ -110,7 +115,6 @@ const CarPartsPage = () => {
     setPartName(part.name);
     setPartPrice(part.price);
     setPartDescription(part.description);
-    setPartImage({ name: part.image.split("/").pop() });
     setEditId(part.id);
     setOpen(true);
   };
@@ -157,7 +161,8 @@ const CarPartsPage = () => {
           />
           <input
             type="file"
-            onChange={(e) => setPartImage(e.target.files[0])}
+            multiple
+            onChange={(e) => setPartImages([...e.target.files])} // Handle multiple image files
             style={{ marginTop: "20px" }}
           />
         </DialogContent>
@@ -178,7 +183,7 @@ const CarPartsPage = () => {
               <TableCell>Name</TableCell>
               <TableCell>Price</TableCell>
               <TableCell>Description</TableCell>
-              <TableCell>Image</TableCell>
+              <TableCell>Images</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -189,15 +194,19 @@ const CarPartsPage = () => {
                 <TableCell>${part.price.toFixed(2)}</TableCell>
                 <TableCell>{part.description}</TableCell>
                 <TableCell>
-                  <img
-                    src={part.image}
-                    alt={part.name}
-                    style={{
-                      width: "80px",
-                      height: "80px",
-                      objectFit: "cover",
-                    }}
-                  />
+                  {part.images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={part.name}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        objectFit: "cover",
+                        margin: "5px",
+                      }}
+                    />
+                  ))}
                 </TableCell>
                 <TableCell align="right">
                   <IconButton onClick={() => handleEdit(part)}>

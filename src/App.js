@@ -25,6 +25,7 @@ import UserProfile from "./user/UserProfile";
 import ProductList from "./shop/components/ProductList";
 import Cart from "./shop/components/Cart";
 import Checkout from "./shop/components/Checkout";
+import ShopDetailPage from "./shop/components/ProductDetails";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -86,7 +87,7 @@ function App() {
           <Route path="/login" element={<Navigate to={`/${role}`} />} />
           <Route path="/signup" element={<Navigate to={`/${role}`} />} />
           <Route path="/shop" element={<ProductList />} />
-          <Route path="/shop/:id" element={<VehicleDetailPage />} />
+          <Route path="/shop/:id" element={<ShopDetailPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route
