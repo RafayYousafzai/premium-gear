@@ -1,11 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import {
-  FaMapMarkerAlt,
-  FaCalculator,
-  FaTruck,
-  FaShieldAlt,
-  FaTruckLoading,
-} from "react-icons/fa";
+import { FaCalculator, FaTruck, FaShieldAlt } from "react-icons/fa";
 import "../../vehicle/styles/VehicleDetailPage.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";

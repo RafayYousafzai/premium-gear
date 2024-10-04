@@ -19,6 +19,7 @@ import UsersPage from "./UsersPage";
 import ReportsPage from "./ReportsPage";
 import logo from "../assets/logo.png";
 import CarPartsPage from "./CarParts";
+import CarPartsOrders from "./CarPartsOrders";
 
 const AdminDashboard = () => {
   const [drawerOpen, setDrawerOpen] = useState(true);
@@ -47,6 +48,12 @@ const AdminDashboard = () => {
           />
         </div>
         <List>
+          <ListItem button component={Link} to="/admin/PartsOrders">
+            <ListItemIcon>
+              <DashboardIcon style={{ color: "#fff" }} />
+            </ListItemIcon>
+            <ListItemText primary="Parts Orders" />
+          </ListItem>
           <ListItem button component={Link} to="/admin">
             <ListItemIcon>
               <DashboardIcon style={{ color: "#fff" }} />
@@ -89,6 +96,7 @@ const AdminDashboard = () => {
       <main style={{ flexGrow: 1, padding: "24px" }}>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
+          <Route path="/PartsOrders" element={<CarPartsOrders />} />
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/listings" element={<ListingsPage />} />
           <Route path="/users" element={<UsersPage />} />

@@ -17,7 +17,7 @@ import {
   ButtonGroup,
 } from "@mui/material";
 import "./styles/ProfileStyles.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState(null);

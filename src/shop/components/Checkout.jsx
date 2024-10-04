@@ -22,8 +22,16 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ShopContext } from "../../context/ShopContext";
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../../firebase";
 
 // Replace with your actual Stripe publishable key
 const stripePromise = loadStripe(
@@ -58,6 +66,32 @@ const StyledCardElement = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(3),
 }));
 
+const fetchUserProfile = async () => {
+  const currentUser = auth.currentUser;
+  if (!currentUser) {
+    alert("No user is logged in");
+    return null;
+  }
+
+  try {
+    const usersQuery = query(
+      collection(db, "users"),
+      where("email", "==", currentUser.email)
+    );
+    const userSnapshot = await getDocs(usersQuery);
+    if (!userSnapshot.empty) {
+      const userData = userSnapshot.docs[0].data();
+      return { ...userData, id: userSnapshot.docs[0].id }; // Return user profile with ID
+    } else {
+      alert("User does not exist. Please sign up.");
+      return null;
+    }
+  } catch (err) {
+    console.log("Error fetching user profile:", err);
+    return null;
+  }
+};
+
 const CheckoutForm = ({ total }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -65,30 +99,47 @@ const CheckoutForm = ({ total }) => {
   const [processing, setProcessing] = useState(false);
   const navigate = useNavigate();
   const { cart, clearCart } = useContext(ShopContext);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setProcessing(true);
 
     if (!stripe || !elements) return;
 
-    // Create payment method using Stripe
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-    });
+    // Check if the user is logged in and fetch profile
+    const userProfile = await fetchUserProfile();
+    if (!userProfile) {
+      navigate("/signup"); // Redirect to signup if no user is logged in or exists
+      setProcessing(false);
+      return;
+    }
 
-    if (error) {
-      setError(error.message);
+    // Create payment method using Stripe
+    const { error: stripeError, paymentMethod } =
+      await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardElement),
+      });
+
+    if (stripeError) {
+      setError(stripeError.message);
       setProcessing(false);
       return;
     }
 
     try {
+      // Add order to Firestore, including user information
       await addDoc(collection(db, "carPartsOrders"), {
         items: cart,
         status: "purchased",
         paymentMethodId: paymentMethod.id,
         total,
+        user: {
+          name: userProfile.name,
+          email: userProfile.email,
+          userId: userProfile.id,
+        },
+        createdAt: new Date().toISOString(),
       });
 
       console.log("Payment successful", paymentMethod);
