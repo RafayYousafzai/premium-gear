@@ -244,13 +244,16 @@ const ListingsPage = () => {
                 <TableCell>{vehicle.reservationPrice}</TableCell>
                 <TableCell>{vehicle.status}</TableCell>
                 <TableCell align="right">
-                  <IconButton onClick={() => handleEdit(vehicle)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }} onClick={() => handleEdit(vehicle)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleDelete(vehicle.id)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }} onClick={() => handleDelete(vehicle.id)}>
                     <DeleteIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleAdditionalInfoOpen(vehicle)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }} onClick={() => handleAdditionalInfoOpen(vehicle)}>
                     <InfoIcon />
                   </IconButton>
                 </TableCell>

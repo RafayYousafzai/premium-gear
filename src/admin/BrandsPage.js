@@ -170,10 +170,12 @@ const BrandsPage = () => {
                   />
                 </TableCell>
                 <TableCell align="right">
-                  <IconButton onClick={() => handleEdit(brand)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }} onClick={() => handleEdit(brand)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleDelete(brand.id)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }} onClick={() => handleDelete(brand.id)}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>

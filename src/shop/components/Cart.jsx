@@ -44,6 +44,7 @@ export default function Cart() {
                     />
                     <ListItemSecondaryAction style={{ display: "flex" }}>
                       <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }}
                         edge="start"
                         aria-label="remove"
                         onClick={() => decreaseQuantity(item.id)}
@@ -51,6 +52,7 @@ export default function Cart() {
                         <RemoveIcon />
                       </IconButton>
                       <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }}
                         edge="start"
                         aria-label="add"
                         onClick={() => increaseQuantity(item.id)}
@@ -58,6 +60,7 @@ export default function Cart() {
                         <AddIcon />
                       </IconButton>
                       <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }}
                         edge="end"
                         aria-label="delete"
                         onClick={() => removeFromCart(item.id)}

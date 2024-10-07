@@ -69,10 +69,12 @@ const ViewListingsPage = () => {
                 <TableCell>{vehicle.reservationPrice}</TableCell>
                 <TableCell>{vehicle.status}</TableCell>
                 <TableCell align="right">
-                  <IconButton onClick={() => handleEdit(vehicle.id)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }} onClick={() => handleEdit(vehicle.id)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleDelete(vehicle.id)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }} onClick={() => handleDelete(vehicle.id)}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>

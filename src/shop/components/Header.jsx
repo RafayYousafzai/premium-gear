@@ -12,7 +12,8 @@ export default function Header({ cartItemCount }) {
             Car Parts Store
           </Link>
         </Typography>
-        <IconButton component={Link} to="/cart" color="inherit">
+        <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }} component={Link} to="/cart" color="inherit">
           <Badge badgeContent={cartItemCount} color="secondary">
             <ShoppingCartIcon />
           </Badge>
