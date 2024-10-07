@@ -130,7 +130,7 @@ const OrderTable = () => {
           <br />
           <br />
           <br />
-          <Button onClick={handleCloseModal} startIcon={<CloseIcon />}>
+          <Button variant="contained" onClick={handleCloseModal} startIcon={<CloseIcon />}>
             Close
           </Button>
         </Box>
