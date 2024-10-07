@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Dialog,
@@ -14,26 +14,37 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { db, storage } from '../firebase'; // Ensure you have both Firestore and Storage initialized
-import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+  ButtonGroup,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { db, storage } from "../firebase"; // Ensure you have both Firestore and Storage initialized
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const BrandsPage = () => {
   const [brands, setBrands] = useState([]);
   const [open, setOpen] = useState(false);
-  const [brandName, setBrandName] = useState('');
+  const [brandName, setBrandName] = useState("");
   const [brandImage, setBrandImage] = useState(null);
   const [editId, setEditId] = useState(null);
 
   useEffect(() => {
     const fetchBrands = async () => {
-      const brandsCollection = collection(db, 'brands');
+      const brandsCollection = collection(db, "brands");
       const brandsSnapshot = await getDocs(brandsCollection);
-      const brandsList = brandsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const brandsList = brandsSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
       setBrands(brandsList);
     };
     fetchBrands();
@@ -45,7 +56,7 @@ const BrandsPage = () => {
 
   const handleClose = () => {
     setOpen(false);
-    setBrandName('');
+    setBrandName("");
     setBrandImage(null);
     setEditId(null);
   };
@@ -64,34 +75,40 @@ const BrandsPage = () => {
       const imageUrl = await handleImageUpload(brandImage);
 
       if (editId) {
-        const brandDoc = doc(db, 'brands', editId);
+        const brandDoc = doc(db, "brands", editId);
         await updateDoc(brandDoc, { name: brandName, image: imageUrl });
       } else {
-        await addDoc(collection(db, 'brands'), { name: brandName, image: imageUrl });
+        await addDoc(collection(db, "brands"), {
+          name: brandName,
+          image: imageUrl,
+        });
       }
 
-      const brandsSnapshot = await getDocs(collection(db, 'brands'));
-      const brandsList = brandsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const brandsSnapshot = await getDocs(collection(db, "brands"));
+      const brandsList = brandsSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
       setBrands(brandsList);
       handleClose();
     } catch (error) {
-      console.error('Error submitting brand:', error);
+      console.error("Error submitting brand:", error);
     }
   };
 
   const handleEdit = (brand) => {
     setBrandName(brand.name);
-    setBrandImage({ name: brand.image.split('/').pop() });
+    setBrandImage({ name: brand.image.split("/").pop() });
     setEditId(brand.id);
     setOpen(true);
   };
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, 'brands', id));
+      await deleteDoc(doc(db, "brands", id));
       setBrands(brands.filter((brand) => brand.id !== id));
     } catch (error) {
-      console.error('Error deleting brand:', error);
+      console.error("Error deleting brand:", error);
     }
   };
 
@@ -101,12 +118,11 @@ const BrandsPage = () => {
         <AddIcon /> Create Brand
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{editId ? 'Edit Brand' : 'Create Brand'}</DialogTitle>
+        <DialogTitle>{editId ? "Edit Brand" : "Create Brand"}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
-            margin="dense"
-            label="Brand Name"
+            placeholder="Brand Name"
             fullWidth
             value={brandName}
             onChange={(e) => setBrandName(e.target.value)}
@@ -114,18 +130,22 @@ const BrandsPage = () => {
           <input
             type="file"
             onChange={(e) => setBrandImage(e.target.files[0])}
-            style={{ marginTop: '20px' }}
+            style={{ marginTop: "20px" }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">Cancel</Button>
-          <Button onClick={handleSubmit} color="primary">
-            {editId ? 'Update' : 'Create'}
-          </Button>
+          <ButtonGroup fullWidth>
+            <Button onClick={handleClose} color="primary" variant="outlined">
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit} color="primary" variant="contained">
+              {editId ? "Update" : "Create"}
+            </Button>
+          </ButtonGroup>
         </DialogActions>
       </Dialog>
 
-      <TableContainer component={Paper} style={{ marginTop: '20px' }}>
+      <TableContainer component={Paper} style={{ marginTop: "20px" }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -139,7 +159,15 @@ const BrandsPage = () => {
               <TableRow key={brand.id}>
                 <TableCell>{brand.name}</TableCell>
                 <TableCell>
-                  <img src={brand.image} alt={brand.name} style={{ width: '80px', height: '80px', objectFit: 'cover' }} />
+                  <img
+                    src={brand.image}
+                    alt={brand.name}
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      objectFit: "cover",
+                    }}
+                  />
                 </TableCell>
                 <TableCell align="right">
                   <IconButton onClick={() => handleEdit(brand)}>

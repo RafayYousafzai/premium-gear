@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   TextField,
   Dialog,
@@ -7,13 +7,22 @@ import {
   DialogTitle,
   MenuItem,
   Button,
-} from '@mui/material';
-import { db, storage } from '../firebase';
-import { doc, addDoc, updateDoc, collection } from 'firebase/firestore';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+  ButtonGroup,
+} from "@mui/material";
+import { db, storage } from "../firebase";
+import { doc, addDoc, updateDoc, collection } from "firebase/firestore";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
-const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, brands, editId, setEditId }) => {
-  
+const VehicleForm = ({
+  open,
+  handleClose,
+  fetchVehicles,
+  formData,
+  setFormData,
+  brands,
+  editId,
+  setEditId,
+}) => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,7 +31,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
   };
 
   const handleImageChange = (e) => {
-    if (e.target.name === 'mainImage') {
+    if (e.target.name === "mainImage") {
       setFormData({
         ...formData,
         mainImage: e.target.files[0],
@@ -38,26 +47,29 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
   const handleSubmit = async () => {
     if (editId) {
       // Update existing vehicle
-      const vehicleDoc = doc(db, 'vehicles', editId);
+      const vehicleDoc = doc(db, "vehicles", editId);
       await updateDoc(vehicleDoc, formData);
     } else {
       // Upload images and create new vehicle
-      let mainImageUrl = '';
+      let mainImageUrl = "";
       const galleryUrls = [];
 
       if (formData.mainImage) {
-        const mainImageRef = ref(storage, `vehicles/${formData.mainImage.name}`);
-        const mainUploadTask = uploadBytesResumable(mainImageRef, formData.mainImage);
+        const mainImageRef = ref(
+          storage,
+          `vehicles/${formData.mainImage.name}`
+        );
+        const mainUploadTask = uploadBytesResumable(
+          mainImageRef,
+          formData.mainImage
+        );
         mainImageUrl = await new Promise((resolve, reject) => {
-          mainUploadTask.on(
-            'state_changed',
-            null,
-            reject,
-            async () => {
-              const downloadURL = await getDownloadURL(mainUploadTask.snapshot.ref);
-              resolve(downloadURL);
-            }
-          );
+          mainUploadTask.on("state_changed", null, reject, async () => {
+            const downloadURL = await getDownloadURL(
+              mainUploadTask.snapshot.ref
+            );
+            resolve(downloadURL);
+          });
         });
       }
 
@@ -66,21 +78,18 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
           const galleryRef = ref(storage, `vehicles/gallery/${file.name}`);
           const galleryUploadTask = uploadBytesResumable(galleryRef, file);
           const galleryUrl = await new Promise((resolve, reject) => {
-            galleryUploadTask.on(
-              'state_changed',
-              null,
-              reject,
-              async () => {
-                const downloadURL = await getDownloadURL(galleryUploadTask.snapshot.ref);
-                resolve(downloadURL);
-              }
-            );
+            galleryUploadTask.on("state_changed", null, reject, async () => {
+              const downloadURL = await getDownloadURL(
+                galleryUploadTask.snapshot.ref
+              );
+              resolve(downloadURL);
+            });
           });
           galleryUrls.push(galleryUrl);
         }
       }
 
-      await addDoc(collection(db, 'vehicles'), {
+      await addDoc(collection(db, "vehicles"), {
         ...formData,
         mainImage: mainImageUrl,
         galleryImages: galleryUrls,
@@ -93,11 +102,11 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>{editId ? 'Edit Vehicle' : 'Add New Vehicle'}</DialogTitle>
+      <DialogTitle>{editId ? "Edit Vehicle" : "Add New Vehicle"}</DialogTitle>
       <DialogContent>
         <TextField
           margin="dense"
-          label="Vehicle Name"
+          placeholder="Vehicle Name"
           type="text"
           fullWidth
           name="name"
@@ -106,7 +115,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Brand"
+          placeholder="Brand"
           type="text"
           fullWidth
           name="brand"
@@ -122,7 +131,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         </TextField>
         <TextField
           margin="dense"
-          label="Year"
+          placeholder="Year"
           type="number"
           fullWidth
           name="year"
@@ -131,7 +140,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Location"
+          placeholder="Location"
           type="text"
           fullWidth
           name="location"
@@ -140,7 +149,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Body Style"
+          placeholder="Body Style"
           type="text"
           fullWidth
           name="bodyStyle"
@@ -149,7 +158,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Transmission"
+          placeholder="Transmission"
           type="text"
           fullWidth
           name="transmission"
@@ -158,7 +167,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Doors"
+          placeholder="Doors"
           type="number"
           fullWidth
           name="doors"
@@ -167,7 +176,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Seats"
+          placeholder="Seats"
           type="number"
           fullWidth
           name="seats"
@@ -176,7 +185,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Engine Displacement (cc)"
+          placeholder="Engine Displacement (cc)"
           type="text"
           fullWidth
           name="engineDisplacement"
@@ -185,7 +194,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Power Output (hp)"
+          placeholder="Power Output (hp)"
           type="text"
           fullWidth
           name="powerOutput"
@@ -194,7 +203,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Color"
+          placeholder="Color"
           type="text"
           fullWidth
           name="color"
@@ -203,7 +212,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Fuel Type"
+          placeholder="Fuel Type"
           type="text"
           fullWidth
           name="fuelType"
@@ -212,7 +221,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Warranty (months)"
+          placeholder="Warranty (months)"
           type="number"
           fullWidth
           name="warranty"
@@ -221,7 +230,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Mileage (KM)"  // New Mileage field
+          placeholder="Mileage (KM)" // New Mileage field
           type="number"
           fullWidth
           name="mileage"
@@ -230,7 +239,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Price"
+          placeholder="Price"
           type="number"
           fullWidth
           name="price"
@@ -239,7 +248,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Reservation Price"
+          placeholder="Reservation Price"
           type="number"
           fullWidth
           name="reservationPrice"
@@ -248,7 +257,7 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
         />
         <TextField
           margin="dense"
-          label="Status"
+          placeholder="Status"
           type="text"
           fullWidth
           name="status"
@@ -268,23 +277,25 @@ const VehicleForm = ({ open, handleClose, fetchVehicles, formData, setFormData, 
           type="file"
           onChange={handleImageChange}
           name="mainImage"
-          style={{ marginTop: '20px' }}
+          style={{ marginTop: "20px" }}
         />
         <input
           type="file"
           onChange={handleImageChange}
           name="galleryImages"
           multiple
-          style={{ marginTop: '20px' }}
+          style={{ marginTop: "20px" }}
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Cancel
-        </Button>
-        <Button onClick={handleSubmit} color="primary">
-          {editId ? 'Update' : 'Create'}
-        </Button>
+        <ButtonGroup fullWidth>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button variant="contained" onClick={handleSubmit} color="primary">
+            {editId ? "Update" : "Create"}
+          </Button>
+        </ButtonGroup>
       </DialogActions>
     </Dialog>
   );

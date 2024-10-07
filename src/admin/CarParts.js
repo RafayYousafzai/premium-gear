@@ -14,6 +14,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  ButtonGroup,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
@@ -139,14 +140,14 @@ const CarPartsPage = () => {
           <TextField
             autoFocus
             margin="dense"
-            label="Part Name"
+            placeholder="Part Name"
             fullWidth
             value={partName}
             onChange={(e) => setPartName(e.target.value)}
           />
           <TextField
             margin="dense"
-            label="Price"
+            placeholder="Price"
             type="number"
             fullWidth
             value={partPrice}
@@ -154,7 +155,7 @@ const CarPartsPage = () => {
           />
           <TextField
             margin="dense"
-            label="Description"
+            placeholder="Description"
             fullWidth
             value={partDescription}
             onChange={(e) => setPartDescription(e.target.value)}
@@ -167,12 +168,14 @@ const CarPartsPage = () => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary">
-            {editId ? "Update" : "Add"}
-          </Button>
+          <ButtonGroup fullWidth>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button variant="contained" onClick={handleSubmit} color="primary">
+              {editId ? "Update" : "Add"}
+            </Button>
+          </ButtonGroup>
         </DialogActions>
       </Dialog>
 
@@ -209,10 +212,16 @@ const CarPartsPage = () => {
                   ))}
                 </TableCell>
                 <TableCell align="right">
-                  <IconButton onClick={() => handleEdit(part)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }}
+                    onClick={() => handleEdit(part)}
+                  >
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleDelete(part.id)}>
+                  <IconButton
+                    style={{ height: 40, width: 40, color: "#2980b9" }}
+                    onClick={() => handleDelete(part.id)}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
