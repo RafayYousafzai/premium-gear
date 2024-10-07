@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import "./styles/ProfileStyles.css";
 import { useNavigate } from "react-router-dom";
+import SidebarNavigation from "./UserSidebar";
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState(null);
@@ -96,129 +97,132 @@ const UserProfile = () => {
   if (error) return <Typography color="error">{error}</Typography>;
 
   return (
-    <Box className="profile-container">
-      {userProfile && (
-        <Box className="profile-details">
-          <Typography variant="h4" gutterBottom>
-            {editable ? "Edit Profile" : `${userProfile.name}'s Profile`}
-          </Typography>
+    <div className=" ">
+      <SidebarNavigation />
+      <Box className="profile-container ml-[20vw]">
+        {userProfile && (
+          <Box className="profile-details">
+            <Typography variant="h4" gutterBottom>
+              {editable ? "Edit Profile" : `${userProfile.name}'s Profile`}
+            </Typography>
 
-          <TextField
-            label="Name"
-            name="name"
-            value={userProfile.name}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Email"
-            name="email"
-            value={userProfile.email}
-            disabled
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Date of Birth"
-            name="dob"
-            value={userProfile.dob}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Phone"
-            name="phone"
-            value={userProfile.phone}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="DNI"
-            name="dni"
-            value={userProfile.dni}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Role"
-            name="role"
-            value={userProfile.role}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Street"
-            name="street"
-            value={userProfile.street}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="City"
-            name="city"
-            value={userProfile.city}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Country"
-            name="country"
-            value={userProfile.country}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Zip Code"
-            name="zipCode"
-            value={userProfile.zipCode}
-            onChange={handleInputChange}
-            disabled={!editable}
-            fullWidth
-            margin="normal"
-          />
+            <TextField
+              label="Name"
+              name="name"
+              value={userProfile.name}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Email"
+              name="email"
+              value={userProfile.email}
+              disabled
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Date of Birth"
+              name="dob"
+              value={userProfile.dob}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Phone"
+              name="phone"
+              value={userProfile.phone}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="DNI"
+              name="dni"
+              value={userProfile.dni}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Role"
+              name="role"
+              value={userProfile.role}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Street"
+              name="street"
+              value={userProfile.street}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="City"
+              name="city"
+              value={userProfile.city}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Country"
+              name="country"
+              value={userProfile.country}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Zip Code"
+              name="zipCode"
+              value={userProfile.zipCode}
+              onChange={handleInputChange}
+              disabled={!editable}
+              fullWidth
+              margin="normal"
+            />
 
-          <Box className="button-group">
-            {editable ? (
-              <ButtonGroup fullWidth>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSave}
-                  disabled={saving}
-                >
-                  {saving ? <CircularProgress size={24} /> : "Save Changes"}
+            <Box className="button-group">
+              {editable ? (
+                <ButtonGroup fullWidth>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSave}
+                    disabled={saving}
+                  >
+                    {saving ? <CircularProgress size={24} /> : "Save Changes"}
+                  </Button>
+                  <Button variant="outlined" onClick={handleEditToggle}>
+                    Cancel
+                  </Button>
+                </ButtonGroup>
+              ) : (
+                <Button variant="contained" onClick={handleEditToggle}>
+                  Edit Profile
                 </Button>
-                <Button variant="outlined" onClick={handleEditToggle}>
-                  Cancel
-                </Button>
-              </ButtonGroup>
-            ) : (
-              <Button variant="contained" onClick={handleEditToggle}>
-                Edit Profile
-              </Button>
-            )}
+              )}
+            </Box>
+
+            <button onClick={handleLogout}>Logout</button>
           </Box>
-
-          <button onClick={handleLogout}>Logout</button>
-        </Box>
-      )}
-    </Box>
+        )}
+      </Box>
+    </div>
   );
 };
 
