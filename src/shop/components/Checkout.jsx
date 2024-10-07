@@ -199,38 +199,63 @@ export default function Checkout() {
   return (
     <>
       <Header />
-      <Container maxWidth="md">
-        <StyledPaper elevation={3}>
-          <Typography variant="h4" align="center" gutterBottom>
-            Checkout
-          </Typography>
-          <Typography variant="h6" gutterBottom>
-            Order Summary
-          </Typography>
-          <List>
-            {cart.map((item) => (
-              <React.Fragment key={item.id}>
-                <ListItem>
-                  <ListItemText
-                    primary={item.name}
-                    secondary={`Quantity: ${item.quantity}`}
-                  />
-                  <Typography variant="body1">
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </Typography>
-                </ListItem>
-                <Divider />
-              </React.Fragment>
-            ))}
-          </List>
-          <Box mt={2} mb={2}>
-            <Typography variant="h6">Total: ${total.toFixed(2)}</Typography>
-          </Box>
-          <Elements stripe={stripePromise}>
-            <CheckoutForm total={total} />
-          </Elements>
-        </StyledPaper>
-      </Container>
+      <main className="container mx-auto px-4 py-8">
+        <div className="bg-white shadow-xl rounded-lg overflow-hidden">
+          <div className="p-8 space-y-8">
+            <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-6">
+              Checkout
+            </h2>
+
+            {/* Order Summary */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-gray-700">
+                Order Summary
+              </h3>
+              <ul className="divide-y divide-gray-300">
+                {cart.map((item) => (
+                  <li
+                    key={item.id}
+                    className="py-1 flex justify-between items-center"
+                  >
+                    <div>
+                      <p className="text-lg font-medium text-gray-800">
+                        {item.name}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Quantity: {item.quantity}
+                      </p>
+                    </div>
+                    <p className="text-lg font-semibold text-gray-900">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Total Section */}
+            <div className="border-t border-gray-300 pt-6">
+              <div className="flex justify-between items-center">
+                <h3 className="text-xl font-semibold text-gray-800">Total:</h3>
+                <p className="text-2xl font-bold text-gray-900">
+                  ${total.toFixed(2)}
+                </p>
+              </div>
+            </div>
+
+            {/* Payment Section */}
+            <Elements stripe={stripePromise}>
+              <div className="mt-8 bg-gray-50 p-6 rounded-lg shadow-md">
+                <h3 className="text-lg font-medium text-gray-800 mb-4">
+                  Payment Details
+                </h3>
+                <CheckoutForm total={total} />
+              </div>
+            </Elements>
+          </div>
+        </div>
+      </main>
+
       <Footer />
     </>
   );

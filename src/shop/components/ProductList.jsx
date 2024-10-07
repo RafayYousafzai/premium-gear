@@ -4,6 +4,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
 export default function ProductList() {
   const navigate = useNavigate();
@@ -45,11 +47,8 @@ export default function ProductList() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Product List</h1>
-        </div>
-      </header>
+      <Header />
+
       <main>
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
@@ -78,7 +77,7 @@ export default function ProductList() {
                   <option value="100">Under $100</option>
                   <option value="200">Under $200</option>
                 </select>
-                <select
+                {/* <select
                   className="w-full sm:w-auto px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
@@ -87,7 +86,7 @@ export default function ProductList() {
                   <option value="engine">Engine</option>
                   <option value="brakes">Brakes</option>
                   <option value="suspension">Suspension</option>
-                </select>
+                </select> */}
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -119,9 +118,8 @@ export default function ProductList() {
                         Add to Cart
                       </button>
                       <button
-                          onClick={() => navigate(`/shop/${product.id}`)}
-
-                         className="px-4 py-2 w-[40%] bg-gray-200 text-gray-800 text-sm font-medium rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                        onClick={() => navigate(`/shop/${product.id}`)}
+                        className="px-4 py-2 w-[40%] bg-gray-200 text-gray-800 text-sm font-medium rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
                       >
                         View Details
                       </button>
@@ -133,13 +131,7 @@ export default function ProductList() {
           </div>
         </div>
       </main>
-      <footer className="bg-white shadow mt-8">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500 text-sm">
-            © 2023 Your Company Name. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

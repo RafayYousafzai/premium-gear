@@ -111,48 +111,43 @@ const ShopDetailPage = () => {
         </div>
 
         <div className="right-section">
-          <div className="sticky-section">
-            <div className="vehicle-header">
-              <h1 className="vehicle-title">
-                {vehicle.brand} {vehicle.name}
-              </h1>
-            </div>
-            <div className="price-section">
-              <div>
-                <h3 className="price-heading">Price</h3>
-                <p className="vehicle-price">€{vehicle.price}</p>
+          <div class="max-w-md p-4 mx-auto space-y-4 border rounded-md">
+            <h1 class="text-xl font-bold">{vehicle.brand}</h1>
+            <p class="text-sm text-muted-foreground"> {vehicle.name}</p>
+
+            <p class="text-2xl font-bold text-primary">€{vehicle.price}</p>
+
+            <div class="space-y-1">
+              <div class="flex justify-between">
+                <p class="font-medium">SKU:</p>
+                <p>ZAA-002</p>
+              </div>
+              <div class="flex justify-between">
+                <p class="font-medium">Ready to Ship In:</p>
+                <p>Usually 2-4 Business Days</p>
+              </div>
+              <div class="flex justify-between">
+                <p class="font-medium">Applicable Model Years:</p>
+                <p>All Makes and Models</p>
+              </div>
+              <div class="flex justify-between">
+                <p class="font-medium">Product Notes:</p>
+                <p>Comes as a Set of 4</p>
               </div>
             </div>
-            <p className="vehicle-location">€{vehicle.description || "N/A"}</p>
-            <button
-              className="action-button"
-              onClick={() => handlePurchaseClick(vehicle)}
-            >
-              Buy Now
-            </button>{" "}
-            <button
-              className="action-button"
-              onClick={() => addToCart(vehicle)}
-            >
-              Add To Cart
-            </button>
-            <div className="info-section">
-              <div className="info-item">
-                <FaCalculator />
-                <span className="info-text">
-                  Financing plans available from € per month (no down payment)
-                </span>
-              </div>
-              <div className="info-item">
-                <FaTruck />
-                <span className="info-text">
-                  See the fastest delivery dates
-                </span>
-              </div>
-              <div className="info-item">
-                <FaShieldAlt />
-                <span className="info-text">1-year free warranty</span>
-              </div>
+            <div class="space-y-2">
+              <button
+                className="action-button"
+                onClick={() => handlePurchaseClick(vehicle)}
+              >
+                Buy Now
+              </button>{" "}
+              <button
+                className="action-button"
+                onClick={() => addToCart(vehicle)}
+              >
+                Add To Cart
+              </button>
             </div>
           </div>
         </div>
