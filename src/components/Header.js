@@ -121,7 +121,7 @@ const Header = () => {
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <IconButton
-                    style={{ height: 40, width: 40, color: "#2980b9" }} component={Link} to="/cart" color="inherit">
+                    style={{ height: 40, width: 40, color: "#fff" }} component={Link} to="/cart" color="inherit">
               <Badge badgeContent={cart.length} color="secondary">
                 <ShoppingCartIcon />
               </Badge>

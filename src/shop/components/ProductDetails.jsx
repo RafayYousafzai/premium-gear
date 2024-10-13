@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { FaCalculator, FaTruck, FaShieldAlt } from "react-icons/fa";
-import "../../vehicle/styles/VehicleDetailPage.css";
+import "./VehicleDetailPage.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
@@ -8,6 +7,8 @@ import { db } from "../../firebase";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ShopContext } from "../../context/ShopContext";
+import { HeartIcon, MinusIcon, PlusIcon, StarIcon } from "lucide-react";
+import { IconButton } from "@mui/material";
 
 const ShopDetailPage = () => {
   const { addToCart } = useContext(ShopContext);
@@ -110,48 +111,117 @@ const ShopDetailPage = () => {
           </div>
         </div>
 
-        <div className="right-section">
-          <div class="max-w-md p-4 mx-auto space-y-4 border rounded-md">
-            <h1 class="text-xl font-bold">{vehicle.brand}</h1>
-            <p class="text-sm text-muted-foreground"> {vehicle.name}</p>
+        <div className=" mr-32">
+          <div className="  p-4   rounded-lg">
+            <h1 className="text-2xl font-bold text-gray-800">
+              WeatherTech CupFone
+            </h1>
+            <p className="text-sm text-gray-600">Brand: WeatherTech</p>
 
-            <p class="text-2xl font-bold text-primary">€{vehicle.price}</p>
-
-            <div class="space-y-1">
-              <div class="flex justify-between">
-                <p class="font-medium">SKU:</p>
-                <p>ZAA-002</p>
+            <div className="flex items-center mt-2">
+              <div className="flex">
+                <StarIcon className="h-5 w-5 text-gray-300" />
               </div>
-              <div class="flex justify-between">
-                <p class="font-medium">Ready to Ship In:</p>
+              <span className="ml-2 text-sm text-gray-500">No reviews yet</span>
+            </div>
+
+            <p className="mt-4 text-2xl font-bold text-gray-900">
+              $44.99 - $67.99
+            </p>
+            <p className="mt-1 text-sm text-gray-500">
+              Pay in 4 interest-free payments on purchases of $30-$1,500 with
+              PayPal{" "}
+            </p>
+
+            <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p className="font-semibold">SKU</p>
+                <p>CIO-00310</p>
+              </div>
+              <div>
+                <p className="font-semibold">Ready to Ship In:</p>
                 <p>Usually 2-4 Business Days</p>
               </div>
-              <div class="flex justify-between">
-                <p class="font-medium">Applicable Model Years:</p>
+              <div className="col-span-2">
+                <p className="font-semibold">Applicable Model Years:</p>
                 <p>All Makes and Models</p>
               </div>
-              <div class="flex justify-between">
-                <p class="font-medium">Product Notes:</p>
-                <p>Comes as a Set of 4</p>
+            </div>
+
+            <div className="mt-6">
+              <label
+                htmlFor="product-type"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Product Type <span className="text-red-500">*</span>
+              </label>
+              <select
+                id="product-type"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md"
+              >
+                <option>Options</option>
+              </select>
+            </div>
+
+            <div className="mt-6">
+              <label
+                htmlFor="quantity"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Quantity:
+              </label>
+              <div className="mt-1 flex rounded-md shadow-sm">
+                <IconButton
+                  type="button"
+                  className="size-12 "
+                  style={{ backgroundColor: "green", color: "white" }}
+                >
+                  <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                </IconButton>
+                <div className="relative flex items-stretch focus-within:z-10">
+                  <input
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    className="bg-white text-center border-transparent rounded-md w-16"
+                  />
+                </div>
+                <IconButton
+                  type="button"
+                  className="size-12 "
+                  style={{ backgroundColor: "green", color: "white" }}
+                >
+                  <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                </IconButton>
               </div>
             </div>
-            <div class="space-y-2">
+
+            <div className="mt-6 flex space-x-3">
               <button
-                className="action-button"
-                onClick={() => handlePurchaseClick(vehicle)}
+                type="button"
+                className=" text-sm bg-green-800 border border-transparent rounded-md py-3 px-8 flex items-center justify-center  font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
-                Buy Now
-              </button>{" "}
+                ADD
+              </button>
               <button
-                className="action-button"
-                onClick={() => addToCart(vehicle)}
+                type="button"
+                className="flex-none w-[70%] flex items-center justify-center rounded-md border border-gray-300 p-3 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
-                Add To Cart
+                <HeartIcon
+                  className="h-6 w-6 text-gray-400"
+                  aria-hidden="true"
+                />
+                <span className="sr-only">Add to favorites</span>
               </button>
             </div>
           </div>
         </div>
       </div>
+      <div className="mx-40">
+        <h2>Description</h2>
+        <p></p>
+      </div>
+
       <Footer />
     </div>
   );
