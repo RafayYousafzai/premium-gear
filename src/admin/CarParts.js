@@ -30,6 +30,9 @@ import {
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 const CarPartsPage = () => {
   const [open, setOpen] = useState(false);
   const [partName, setPartName] = useState("");
@@ -153,12 +156,12 @@ const CarPartsPage = () => {
             value={partPrice}
             onChange={(e) => setPartPrice(e.target.value)}
           />
-          <TextField
-            margin="dense"
-            placeholder="Description"
-            fullWidth
+
+          <ReactQuill
+            theme="snow"
             value={partDescription}
-            onChange={(e) => setPartDescription(e.target.value)}
+            onChange={setPartDescription}
+            style={{ height: "90%" }}
           />
           <input
             type="file"
@@ -195,7 +198,9 @@ const CarPartsPage = () => {
               <TableRow key={part.id}>
                 <TableCell>{part.name}</TableCell>
                 <TableCell>${part.price.toFixed(2)}</TableCell>
-                <TableCell>{part.description}</TableCell>
+                <TableCell>
+                  <div dangerouslySetInnerHTML={{ __html: part.description }} />
+                </TableCell>
                 <TableCell>
                   {part.images.map((image, index) => (
                     <img

@@ -42,8 +42,12 @@ export default function Component() {
                 Select Year
               </MenuItem>
             </Select>
-            <Button className="bg-yellow-500" variant="contained">SEARCH</Button>
-            <Button className="bg-yellow-500" variant="contained">RESET</Button>
+            <Button className="bg-yellow-500" variant="contained">
+              SEARCH
+            </Button>
+            <Button className="bg-yellow-500" variant="contained">
+              RESET
+            </Button>
           </div>
         </div>
 
@@ -103,13 +107,12 @@ export default function Component() {
             </div>
           </div>
         </div>
+        <footer className="bg-green-900 mt-10 pb-2 pt-4 ">
+          <p className=" text-white font-bold text-3xl text-center">
+            Your trusted source for Automotive Accessories and Parts!
+          </p>
+        </footer>
       </main>
-
-      <footer className="bg-green-900  pt-4 ">
-        <p className=" text-white font-bold text-3xl text-center">
-          Your trusted source for Automotive Accessories and Parts!
-        </p>
-      </footer>
     </div>
   );
 }

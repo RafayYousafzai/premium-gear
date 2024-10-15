@@ -87,9 +87,7 @@ export default function ProductList() {
                     <h3 className="text-lg font-semibold text-gray-900">
                       {product.name}
                     </h3>
-                    <p className="mt-1 text-sm text-gray-600 line-clamp-3">
-                      {product.description}
-                    </p>
+
                     <p className="mt-2 text-lg font-bold text-gray-900">
                       ${product.price.toFixed(2)}
                     </p>

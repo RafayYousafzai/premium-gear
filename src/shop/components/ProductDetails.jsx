@@ -8,7 +8,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ShopContext } from "../../context/ShopContext";
 import { HeartIcon, MinusIcon, PlusIcon, StarIcon } from "lucide-react";
-import { IconButton } from "@mui/material";
+import { Divider, IconButton } from "@mui/material";
 
 const ShopDetailPage = () => {
   const { addToCart } = useContext(ShopContext);
@@ -217,9 +217,11 @@ const ShopDetailPage = () => {
           </div>
         </div>
       </div>
-      <div className="mx-40">
-        <h2>Description</h2>
-        <p></p>
+      <div className="mx-40 my-40">
+        <h2 className="">Description</h2>
+        <Divider />
+        <br />
+        <div dangerouslySetInnerHTML={{ __html: vehicle?.description }} />
       </div>
 
       <Footer />
